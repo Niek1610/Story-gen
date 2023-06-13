@@ -56,7 +56,7 @@ app.post("/", async (req, res) => {
     geheugen.push({ role: "user", content: `${prompt}` });
 
     const response = await openai.createChatCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: geheugen,
       temperature: 1,
       max_tokens: 2048,
