@@ -50,20 +50,20 @@ app.post("/", async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
-  
+    geheugen.push({ role: "user", content: `${prompt}` });
+
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [
-        {"role": "system", "content": `${geheugen}`},
-        {"role": "user", "content": `${prompt}`},
-    ],
+      messages: geheugen,
       temperature: 1,
       max_tokens: 2048,
       presence_penalty: 1,
       frequency_penalty: 1,
     });
 
-  
+    const antwoord = response.data.choices[0].message.content;
+
+    geheugen.push({ role: "assistant", content: antwoord });
 
     res.status(200).send({
       bot: response.data.choices[0].message.content,
