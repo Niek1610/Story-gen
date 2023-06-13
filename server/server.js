@@ -76,7 +76,6 @@ setInterval(function(){
     },
   ];
  
-
 }, 60000);
 
 app.post("/", async (req, res) => {
