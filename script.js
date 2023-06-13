@@ -108,3 +108,19 @@ form.addEventListener("keyup", (e) => {
 });
 
 
+function resetGeheugen() {
+  fetch("/reset")
+    .then((response) => {
+      if (response.status === 200) {
+        alert("Geheugen reset successful");
+      } else {
+        alert("Error resetting geheugen");
+      }
+    })
+    .catch((error) => {
+      alert("Error resetting geheugen");
+      console.log(error);
+    });
+}
+
+resetGeheugen();

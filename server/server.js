@@ -48,7 +48,8 @@ let geheugen = [
   },
 ];
 
-window.addEventListener('beforeunload', () => {
+app.get("/reset", (req, res) => {
+  
   geheugen = [
     {
       role: "system",
@@ -73,7 +74,12 @@ window.addEventListener('beforeunload', () => {
         ` ,
     },
   ];
+
+  res.status(200).send({
+    message: "geheugen reset successful",
+  });
 });
+
 
 app.post("/", async (req, res) => {
   try {
