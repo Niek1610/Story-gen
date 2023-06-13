@@ -48,16 +48,22 @@ let geheugen = [
 
 app.post("/", async (req, res) => {
   try {
+    const prompt = req.body.prompt;
+
   
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: geheugen,
+      messages: [
+        {"role": "system", "content": `${geheugen}`},
+        {"role": "user", "content": `${prompt}`},
+    ],
       temperature: 1,
       max_tokens: 2048,
       presence_penalty: 1,
       frequency_penalty: 1,
     });
 
+  
 
     res.status(200).send({
       bot: response.data.choices[0].message.content,
