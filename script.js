@@ -107,6 +107,18 @@ form.addEventListener("keyup", (e) => {
   }
 });
 
+const serverUrl = 'https://chadgpt-basa.onrender.com';
 
+const resetButton = document.getElementById('reset-button');
 
+resetButton.addEventListener('click', () => {
 
+  fetch(`${serverUrl}/reset`)
+    .then(response => response.text())
+    .then(result => {
+      console.log(result); 
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});

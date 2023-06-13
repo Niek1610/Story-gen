@@ -49,8 +49,7 @@ var geheugen = [
   },
 ];
 
-setInterval(function(){
-
+function resetData() {
   geheugen = [
     {
       role: "system",
@@ -75,8 +74,12 @@ setInterval(function(){
         ` ,
     },
   ];
- 
-}, 60000);
+}
+
+app.get('/reset', (req, res) => {
+  const result = resetData();
+  res.send(result);
+});
 
 app.post("/", async (req, res) => {
   try {
