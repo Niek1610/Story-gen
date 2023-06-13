@@ -14,6 +14,12 @@ background-color: rgb(255, 219, 219);
 
 }
 
+button{
+  background-color: rgb(255, 0, 0);
+  border: 1px solid black;
+  margin-left: 5%;
+}
+
 #GPT #app {
   width: 70vw;
   height: 90vh;
