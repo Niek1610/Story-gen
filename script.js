@@ -96,7 +96,7 @@ window.addEventListener("load", ()=> {
   const uniqueId = generateId();
   chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
   const messageDiv = document.getElementById(uniqueId);
-  messageDiv.innerHTML = "ChadGPT";
+  messageDiv.innerHTML = "ChadGPT, Ask me anything";
 
 } );
 
