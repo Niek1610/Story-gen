@@ -147,10 +147,19 @@ background-color: rgb(0, 1, 0);
 }
 
 #reset-button{
+  background-color: rgb(59, 59, 59);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 1px;
+  align-items: center;
   height: 65px;
   font-weight: bold;
   width: 130px;
   font-size: large;
+  margin-right: 2%;
+  color: #a1a1a1;
 
 }
 #submit-button{

@@ -112,7 +112,7 @@ const serverUrl = 'https://chadgpt-basa.onrender.com';
 const resetButton = document.getElementById('reset-button');
 
 resetButton.addEventListener('click', () => {
-
+  chatContainer.innerHTML += chatStripe(true, "Memory cleared");
   fetch(`${serverUrl}/reset`)
     .then(response => response.text())
     .then(result => {
