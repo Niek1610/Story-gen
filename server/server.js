@@ -28,6 +28,7 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
   try {
   
+
       let character = req.body.character
       let thema = req.body.thema
       let geletterdheid = req.body.geletterdheid
@@ -37,7 +38,7 @@ app.post("/", async (req, res) => {
       model: "gpt-3.5-turbo",
       messages: [{"role": "system", "content": `Schrijf een kort verhaal voor kinderen. Het hoofdcharacter is een ${character[0]},${character[1]}.${character[2]}. Het thema is ${thema[0]} en het niveau van lezen is ${geletterdheid[0]}`}],
       temperature: 1,
-      max_tokens: 4048,
+      max_tokens: 2048,
       presence_penalty: 1,
       frequency_penalty: 1,
     });

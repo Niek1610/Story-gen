@@ -57,7 +57,7 @@ const submit = async (e) => {
   const messageDiv = chatContainer.lastElementChild;
   loader(messageDiv);
 
-  const response = await fetch("https://chadgpt-basa.onrender.com", {
+  const response = await fetch("https://story-yuz6.onrender.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
