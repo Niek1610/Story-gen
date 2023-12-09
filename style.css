@@ -49,10 +49,15 @@ background-color: rgb(226, 97, 5)
 
 
 #GPT .ai {
-  background: rgba(172, 172, 172, 0.28);
-  width: 100%;
+  margin-top: 5%;
+  background: rgba(219, 219, 219, 0.28);
+  width: 56%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
+  color: #000000;
+  font-size: larger;
+  font-weight: bold;
 }
 
 #GPT .message {

@@ -41,7 +41,7 @@ function chatStripe(value) {
 }
 
 
-let v1 = ["stoere, slimme, jongen"]
+let v1 = ["stoere, domme, jongen"]
 let v2 = ["actie"]
 let v3 = ["laag"]
 
