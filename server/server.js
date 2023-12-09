@@ -36,7 +36,7 @@ app.post("/", async (req, res) => {
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": `Schrijf een kort verhaal wat leuk is voor kinderen kinderen. Het hoofdcharacter is een ${character[0]},${character[1]}.${character[2]}. Het thema is ${thema[0]} en het niveau van lezen is ${geletterdheid[0]} Creer alinias met veel spaties zodat het makkelijk te lezen is` }],
+      messages: [{"role": "system", "content": `Schrijf een kort verhaal wat leuk is voor kinderen kinderen. Het hoofdcharacter is een ${character[0]},${character[1]}.${character[2]}. Het thema is ${thema[0]} en het niveau van lezen is ${geletterdheid[0]} Creer alinias zodat het makkelijk te lezen is` }],
       temperature: 1,
       max_tokens: 2048,
       presence_penalty: 1,
