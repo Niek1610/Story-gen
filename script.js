@@ -40,6 +40,11 @@ function chatStripe(value) {
   `);
 }
 
+
+let v1 = ["stoere, slimme, jongen"]
+let v2 = ["actie"]
+let v3 = ["laag"]
+
 const submit = async (e) => {
   e.preventDefault();
 
@@ -58,7 +63,9 @@ const submit = async (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: data.get("prompt"),
+     character: v1,
+     thema: v2,
+     geletterdheid: v3
     }),
   });
 

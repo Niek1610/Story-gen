@@ -19,17 +19,23 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.status(200).send({
-    message: "testing server2",
+    message: "testing server",
   });
 });
+
 
 
 app.post("/", async (req, res) => {
   try {
   
+      let character = req.body.character
+      let thema = req.body.thema
+      let geletterdheid = req.body.geletterdheid
+
+
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": "testing"}],
+      messages: [{"role": "system", "content": `Schrijf een kort verhaal voor kinderen. Het hoofdcharacter is een ${character[0]},${character[1]}.${character[2]}. Het thema is ${thema[0]} en het niveau van lezen is ${geletterdheid[0]}`}],
       temperature: 1,
       max_tokens: 2048,
       presence_penalty: 1,
