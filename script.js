@@ -96,4 +96,4 @@ form.addEventListener("keyup", (e) => {
   }
 });
 
-const serverUrl = 'https://chadgpt-basa.onrender.com';
+const serverUrl = 'https://story-yuz6.onrender.com';
