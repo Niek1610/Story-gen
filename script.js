@@ -26,27 +26,18 @@ function typeText(element, text) {
     } else {
       clearInterval(interval);
     }
-  }, 20);
+  }, 10);
 }
 
-function generateId() {
-  const timeStamp = Date.now();
-  const randomNumber = Math.random();
-  const hexaString = randomNumber.toString(16);
-
-  return `id-${timeStamp}-${hexaString}`;
-}
-
-function chatStripe(isAi, value, uniqueId) {
+function chatStripe(value) {
   return (`
-    <div class="wrapper ${isAi && "ai"}">
+    <div class="wrapper ai">
       <div class="chat">
-      <div class="profile"></div>
-        <div class="message" id=${uniqueId}> ${value} </div>
+        <div class="profile"></div>
+        <div class="message">${value}</div>
       </div>
     </div>
-
-    `)
+  `);
 }
 
 const submit = async (e) => {
@@ -54,16 +45,11 @@ const submit = async (e) => {
 
   const data = new FormData(form);
 
-  chatContainer.innerHTML += chatStripe(false, data.get("prompt"));
+  chatContainer.innerHTML += chatStripe("");
 
   form.reset();
 
-  const uniqueId = generateId();
-  chatContainer.innerHTML += chatStripe(true, "", uniqueId);
-
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-
-  const messageDiv = document.getElementById(uniqueId);
+  const messageDiv = chatContainer.lastElementChild;
   loader(messageDiv);
 
   const response = await fetch("https://chadgpt-basa.onrender.com", {
@@ -77,7 +63,7 @@ const submit = async (e) => {
   });
 
   clearInterval(loadInterval);
-  messageDiv.innerHTML = " ";
+  messageDiv.innerHTML = "";
 
   if (response.ok) {
     const data = await response.json();
@@ -92,13 +78,9 @@ const submit = async (e) => {
   }
 };
 
-window.addEventListener("load", ()=> {
-  const uniqueId = generateId();
-  chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
-  const messageDiv = document.getElementById(uniqueId);
-  messageDiv.innerHTML = "ChadGPT, Ask me anything";
-
-} );
+window.addEventListener("load", () => {
+  chatContainer.innerHTML += chatStripe("");
+});
 
 form.addEventListener("submit", submit);
 form.addEventListener("keyup", (e) => {
@@ -108,17 +90,3 @@ form.addEventListener("keyup", (e) => {
 });
 
 const serverUrl = 'https://chadgpt-basa.onrender.com';
-
-const resetButton = document.getElementById('reset-button');
-
-resetButton.addEventListener('click', () => {
-  chatContainer.innerHTML += chatStripe(true, "Memory cleared");
-  fetch(`${serverUrl}/reset`)
-    .then(response => response.text())
-    .then(result => {
-      console.log(result); 
-    })
-    .catch(error => {
-      console.error(error);
-    });
-});
