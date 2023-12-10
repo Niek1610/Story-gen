@@ -46,7 +46,7 @@ app.post("/", async (req, res) => {
     const imgresponse = await openai.createImage({
       model: "dall-e-3",
       prompt: "een kat op een skateboard",
-      n: "1",
+      n: 1,
       size: "1024x1024",
     })
   
