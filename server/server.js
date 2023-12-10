@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.status(200).send({
-    message: "testing server",
+    message: "testing123",
   });
 });
 
@@ -42,32 +42,24 @@ app.post("/", async (req, res) => {
       frequency_penalty: 1,
     });
 
-    const antwoord = response.data.choices[0].message.content
 
-    const options ={
-        method: "POST",
-        header: {
-          "authorization": `Bearer ${KEY}`,
-          'content-type': "application/json"
-        },
-        body: JSON.stringify({
-          "prompt": `Maak een strip cover`,
-          "n": "1",
-          "size": "1024x1024"
-        })
-    }
-
-    const image = await fetch('https://api.openai.com/v1/images/generations', options)
-    const imgdata = await image.json()
+    const imgresponse = await openai.createImage({
+      model: "dall-e-3",
+      prompt: "een kat op een skateboard",
+      n: "1",
+      size: "1024x1024",
+    })
   
+    image_url = imgresponse.data.data[0].url;
+
+    console.log(image_url)
 
     res.status(200).send({
       bot: response.data.choices[0].message.content,
-      imagedata: imgdata
+      imagedata: image_url
 
     });
 
-    console.log(response.data.choices[0].message.content)
   } catch (error) {
     console.log(error);
     res.status(500).send(error || "Er is iets fout gegaan");

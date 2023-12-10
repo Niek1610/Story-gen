@@ -96,7 +96,7 @@ const submit = async (e) => {
   if (response.ok) {
     const data = await response.json();
     const parsedData = data.bot.trim();
-    console.log('Image Data:', data.imagedata);
+    console.log('url:', data.imagedata);
     typeText(messageDiv, parsedData);
     
       const bewaren = document.getElementById("bewaren")
