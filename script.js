@@ -114,6 +114,9 @@ const submit = async (e) => {
 
     const submitbtn = document.getElementById("submit-button")
     submitbtn.classList.add("hidden")
+
+    const chatContainer = document.getElementById("chat_containter")
+    chatContainer.style.pointerEvents = "all"
   
   } else {
     const err = await response.text();
@@ -153,11 +156,11 @@ nee.addEventListener("click", () =>{
 })
 
 // Tijdelijke functies
-const nfcmsg = document.getElementById("nfc")
+const title = document.getElementById("titleheader")
 const testbtn = document.getElementById("testingbutton")
 testbtn.addEventListener("click", () =>{
   popup.classList.remove("hidden")
-  nfcmsg.classList.add("hidden")
+  title.style.display = "none"
  
 })
 
