@@ -3,18 +3,6 @@ const chatContainer = document.querySelector("#chat_container");
 
 let loadInterval;
 
-function loader(element) {
-  element.textContent = "Verhaal aan het schrijven";
-
-  loadInterval = setInterval(() => {
-    element.textContent += ".";
-
-    if (element.textContent === "Verhaal aan het schrijven....") {
-      element.textContent = "Verhaal aan het schrijven";
-    }
-  }, 300);
-}
-
 
 function addLoadingAnimation() {
   let loadingElement = document.getElementById('loading-dots');
@@ -23,14 +11,26 @@ function addLoadingAnimation() {
     if (loadingElement.innerHTML.length > 3) {
       loadingElement.innerHTML = '';
     }
-  }, 500); // Interval in milliseconds (500ms = 0.5 seconds)
+  }, 500); 
 }
+
+function laden() {
+  let loadingElement = document.getElementById('submit-button');
+  loadInterval = setInterval(function() {
+    loadingElement.innerHTML += '.';
+    if (loadingElement.innerHTML.length > 24) {
+      loadingElement.innerHTML = 'Verhaal wordt gemaakt';
+    }
+  }, 500); 
+}
+
 
 function typeText(element, text) {
   let index = 0;
   let charCount = 0
 
   let interval = setInterval(() => {
+    chatContainer.scrollTop = chatContainer.scrollHeight;
     if (index < text.length) {
       element.innerHTML += text.charAt(index);
       charCount ++ 
@@ -43,11 +43,11 @@ function typeText(element, text) {
       }
 
       index++;
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+     
     } else {
       clearInterval(interval);
     }
-  }, 10);
+  }, 40);
 }
 
 function chatStripe(value) {
@@ -68,7 +68,10 @@ let v3 = []
 
 const submit = async (e) => {
   e.preventDefault();
-  
+  const submitbtn = document.getElementById("submit-button")
+  submitbtn.innerHTML = "Verhaal wordt gemaakt"
+  submitbtn.style.pointerEvents = "none"
+  laden()
   const data = new FormData(form);
 
   chatContainer.innerHTML += chatStripe("");
@@ -76,8 +79,7 @@ const submit = async (e) => {
   form.reset();
 
   const messageDiv = chatContainer.lastElementChild;
-  loader(messageDiv);
-
+ 
   const response = await fetch("https://story-yuz6.onrender.com", {
     method: "POST",
     headers: {
@@ -109,6 +111,7 @@ const submit = async (e) => {
 
     const submitbtn = document.getElementById("submit-button")
     submitbtn.classList.add("hidden")
+  
   } else {
     const err = await response.text();
 
