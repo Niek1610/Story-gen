@@ -51,7 +51,7 @@ app.post("/", async (req, res) => {
           'content-type': "application/json"
         },
         body: JSON.stringify({
-          "prompt": `Maak een passende cover bij dit verhaal ${antwoord}`,
+          "prompt": `Maak een strip cover`,
           "n": "1",
           "size": "1024x1024"
         })

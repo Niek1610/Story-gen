@@ -96,15 +96,7 @@ const submit = async (e) => {
   if (response.ok) {
     const data = await response.json();
     const parsedData = data.bot.trim();
-    const imgdata = data.imgdata;
-    if (imgdata && typeof imgdata === 'string') {
-      const trimmedImgdata = imgdata.trim();
-      // Now you can use trimmedImgdata as needed
-      console.log(trimmedImgdata);
-    } else {
-      console.error('imgdata is not a valid string');
-    }
-
+    console.log('Image Data:', data.imagedata);
     typeText(messageDiv, parsedData);
     
       const bewaren = document.getElementById("bewaren")
