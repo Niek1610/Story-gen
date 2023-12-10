@@ -4,15 +4,26 @@ const chatContainer = document.querySelector("#chat_container");
 let loadInterval;
 
 function loader(element) {
-  element.textContent = "";
+  element.textContent = "Verhaal aan het schrijven";
 
   loadInterval = setInterval(() => {
     element.textContent += ".";
 
-    if (element.textContent === "....") {
-      element.textContent = "";
+    if (element.textContent === "Verhaal aan het schrijven....") {
+      element.textContent = "Verhaal aan het schrijven";
     }
   }, 300);
+}
+
+
+function addLoadingAnimation() {
+  let loadingElement = document.getElementById('loading-dots');
+  loadInterval = setInterval(function() {
+    loadingElement.innerHTML += '.';
+    if (loadingElement.innerHTML.length > 3) {
+      loadingElement.innerHTML = '';
+    }
+  }, 500); // Interval in milliseconds (500ms = 0.5 seconds)
 }
 
 function typeText(element, text) {
@@ -30,7 +41,6 @@ function typeText(element, text) {
         // Sla het extra teken over omdat het al is toegevoegd als "</p>"
         index++;
       }
-
 
       index++;
       chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -86,10 +96,13 @@ const submit = async (e) => {
   if (response.ok) {
     const data = await response.json();
     const parsedData = data.bot.trim();
+    const imgdata = data.imgdata()
+    console.log(imgdata)
 
     typeText(messageDiv, parsedData);
-    const emailform = document.getElementById("emailform")
-    emailform.classList.remove("hidden")
+    
+      const bewaren = document.getElementById("bewaren")
+      bewaren.classList.remove("hidden")
 
     const submitbtn = document.getElementById("submit-button")
     submitbtn.classList.add("hidden")
@@ -101,26 +114,7 @@ const submit = async (e) => {
   }
 };
 
-const popup = document.getElementById("popup")
-const varSub = document.getElementById("varSub")
-varSub.addEventListener("click", submitVariables)
 
-function submitVariables(){
-
-  let charVar1Value = document.getElementById('charVar1').value;
-  let charVar2Value = document.getElementById('charVar2').value;
-  let charVar3Value = document.getElementById('charVar3').value;
-  let themaVarValue = document.getElementById('themaVar').value;
-  let niveauVarValue = document.getElementById('niveauVar').value;
-
-
-  v1 = [charVar1Value, charVar2Value, charVar3Value]
-  v2 = [themaVarValue]
-  v3 = [niveauVarValue]
-
-  popup.classList.add("hidden")
-
-}
 
 window.addEventListener("load", () => {
   chatContainer.innerHTML += chatStripe("");
@@ -134,3 +128,51 @@ form.addEventListener("keyup", (e) => {
 });
 
 const serverUrl = 'https://story-yuz6.onrender.com';
+
+addLoadingAnimation()
+
+const ja = document.getElementById("ja")
+ja.addEventListener("click", () =>{
+  bewaren.classList.add("hidden")
+  const emailform = document.getElementById("emailform")
+  emailform.classList.remove("hidden")
+})
+
+const nee = document.getElementById("nee")
+nee.addEventListener("click", () =>{
+  location.reload()
+})
+
+// Tijdelijke functies
+const nfcmsg = document.getElementById("nfc")
+const testbtn = document.getElementById("testingbutton")
+testbtn.addEventListener("click", () =>{
+  popup.classList.remove("hidden")
+  nfcmsg.classList.add("hidden")
+})
+
+
+const popup = document.getElementById("popup")
+const varSub = document.getElementById("varSub")
+varSub.addEventListener("click", submitVariables)
+
+function submitVariables(){
+
+  let charVar1Value = document.getElementById('charVar1').value;
+  let charVar2Value = document.getElementById('charVar2').value;
+  let charVar3Value = document.getElementById('charVar3').value;
+  let themaVar1Value = document.getElementById('themaVar1').value;
+  let themaVar2Value = document.getElementById('themaVar2').value;
+  let themaVar3Value = document.getElementById('themaVar3').value;
+  let niveauVarValue = document.getElementById('niveauVar').value;
+
+
+  v1 = [charVar1Value, charVar2Value, charVar3Value]
+  v2 = [themaVar1Value, themaVar2Value, themaVar3Value]
+  v3 = [niveauVarValue]
+
+  popup.classList.add("hidden")
+  const submitbtn = document.getElementById("submit-button")
+  submitbtn.classList.remove("hidden")
+  console.log(v1,v2,v3)
+}

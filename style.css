@@ -10,7 +10,7 @@
 body {
   height: 80%;
 margin: 0%;
-background-color: rgb(226, 97, 5)
+background-color: rgba(226, 97, 5, 0.787)
 
 
 }
@@ -35,7 +35,6 @@ background-color: rgb(226, 97, 5)
 
 #GPT #chat_container {
   flex: 1;
-  width: 100%;
   height: 100%;
   overflow-y:scroll;
   display: flex;
@@ -52,13 +51,20 @@ background-color: rgb(226, 97, 5)
   margin-top: 2%;
   width: 100%;
   text-align: center;
+  border-radius: 10px;
 }
 
 #emailsub{
-  width: 4%;
-  height: 60px;
+  position: relative;
+  margin-left: 3px;
+  top: 1px;
+  width: 3%;
+  height: 61px;
+  
 }
-
+.material-icons{
+  font-size:15px
+}
 .hidden{
   display: none;
 }
@@ -132,7 +138,7 @@ input{
   }
 
 
-  .popup{
+  #popup{
     
     position: absolute;
     transform: translate(-50%,-50%);
@@ -173,9 +179,87 @@ input{
     bottom: 0%;
     left: 50%;
     text-align: center;
+    display: grid;
+    place-content: center;
     height: 60px;
     border-radius: 10px;
     font-weight: bold;
     transform: translate(-50%, -50%);
 
+  }
+
+  #nfc h1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #testingbutton{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: #000000;
+    width: 10px;
+    height: 10px;
+  }
+
+  #opnieuw{
+    margin-top: 1%;
+    background-color: rgba(128, 128, 128, 0.139);
+    width: 300px;
+    border-radius: 10px;
+    padding: 1%;
+    color: #727272e7;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+  }
+
+
+  .wrapperContent{
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+  }
+
+  #imageGen{
+    position: relative;
+    height: 100%;
+  }
+
+  #bewaren{
+    text-align: center;
+    margin-top: 3%;
+  }
+
+  .btns{
+    display: flex;
+    gap: 10px;
+    
+
+  }
+
+
+  #ja{
+    display: grid;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    background-color: #7a7a7a0e;
+    border: .5px solid rgba(0, 98, 255, 0.287);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  #nee{
+    display: grid;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    background-color: #7a7a7a1e;
+    border-radius: 3px;
+    cursor: pointer;
+    border: .5px solid rgba(0, 0, 0, 0.06);
   }

@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express, { application, response } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { Configuration, OpenAIApi } from "openai";
@@ -36,14 +36,35 @@ app.post("/", async (req, res) => {
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": `Schrijf een kort verhaal wat leuk is voor kinderen kinderen. Het hoofdcharacter heeft een aantal eigenschappen: ${character[0]},${character[1]}. het character is een${character[2]}. Het thema is ${thema[0]} en het lees niveau is ${geletterdheid[0]}, dus zorg dat de tekst past bij het leesniveau. Creer alinias zodat het makkelijk te lezen is` }],
+      messages: [{"role": "system", "content": `Schrijf een kort verhaal wat leuk is voor kinderen kinderen. Het hoofdcharacter heeft een aantal eigenschappen: ${character[0]},${character[1]}. het character is een${character[2]}. Het thema is ${thema[0]}, ${thema[1]},${thema[2]} en het lees niveau is ${geletterdheid[0]}, dus zorg dat de tekst past bij het leesniveau. Creer alinias zodat het makkelijk te lezen is` }],
       temperature: 1,
       presence_penalty: 1,
       frequency_penalty: 1,
     });
 
+    const antwoord = response.data.choices[0].message.content
+
+    const options ={
+        method: "POST",
+        header: {
+          "authorization": `Bearer ${KEY}`,
+          'content-type': "application/json"
+        },
+        body: JSON.stringify({
+          "prompt": `Maak een passende cover bij dit verhaal ${antwoord}`,
+          "n": "1",
+          "size": "1024x1024"
+        })
+    }
+
+    const image = await fetch('https://api.openai.com/v1/images/generations', options)
+    const imgdata = await image.json()
+  
+
     res.status(200).send({
-      bot: response.data.choices[0].message.content
+      bot: response.data.choices[0].message.content,
+      imgdata: imgdata
+
     });
 
     console.log(response.data.choices[0].message.content)
@@ -52,6 +73,9 @@ app.post("/", async (req, res) => {
     res.status(500).send(error || "Er is iets fout gegaan");
   }
 });
+
+
+
 
 app.listen(5000, () =>
   console.log("server is running at http://localhost:5000")

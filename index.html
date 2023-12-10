@@ -8,17 +8,23 @@
     <title>Story</title>
   </head>
   <body id="GPT">
-    <div class="popup" id="popup">
+    <div id="testingbutton"></div>
+    <div id="nfc">
+        <h1>Wachten op nfc <span id="loading-dots"></span> </h1>
+    </div>
+    <div id="popup" class="hidden">
       <div class="popupbox">
         <div class="character">
-          <h2>character</h2>
+          <h2>Character</h2>
           <input type="text" placeholder="Eigenschap" id="charVar1" required>
           <input type="text" placeholder="Eigenschap" id="charVar2" required>
           <input type="text" placeholder="Jongen/Meisje" id="charVar3" required>
         </div>
         <div class="character">
           <h2>Thema</h2>
-          <input type="text" placeholder="Thema" id="themaVar" required>
+          <input type="text" placeholder="Thema" id="themaVar1" required>
+          <input type="text" placeholder="Thema" id="themaVar2" required>
+          <input type="text" placeholder="Thema" id="themaVar3" required>
         </div>
         <div class="character">
           <h2>Niveau</h2>
@@ -28,13 +34,29 @@
       </div>
     </div>
       <div id="app">
-        <div id="chat_container"></div>
+        <div class="wrapperContent">
+          <div id="imageGen"></div>
+          <div id="chat_container"></div>
+          
+        </div>
+          
+        <div id="bewaren" class="hidden"> <h3>Wil je het verhaal bewaren? <br> <br></h3> 
+          
+          <div class="btns">
+            <div id="nee">Nee</div>
+            <div id="ja">Ja</div>
+          </div>
+       
+          
+        </div>
+       
         <div id="emailform" class="hidden">
           <input type="email" name="email" id="email" placeholder="Email">
-          <button type="submit" id="emailsub">.</button>
+          <button type="submit" id="emailsub"><i class="material-icons" >send</i></button>
+          <div id="opnieuw" onclick="location.reload();"> <h2>Annuleren</h2></div>
         </div>
         <form>
-          <button id="submit-button" type="submit">Creëer jouw verhaal!</button>
+          <button class="hidden" id="submit-button" type="submit">Creëer jouw verhaal!</button>
         </form>
 
       </div>
