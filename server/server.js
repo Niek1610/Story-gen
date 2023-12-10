@@ -50,7 +50,7 @@ app.post("/", async (req, res) => {
       size: "1024x1024",
     })
   
-    image_url = imgresponse.data.data[0].url;
+    const image_url = imgresponse.data.data[0].url;
 
     console.log(image_url)
 
