@@ -46,7 +46,7 @@ app.post("/", async (req, res) => {
 
     const imgresponse = await openai.createImage({
       model: "dall-e-3",
-      prompt: `maak een boekcover voor dit verhaal: ${antwoord} `,
+      prompt: `maak een cover voor dit verhaal: ${antwoord} `,
       n: 1,
       size: "1024x1024",
     })
