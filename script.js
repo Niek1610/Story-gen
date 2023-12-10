@@ -97,6 +97,11 @@ const submit = async (e) => {
     const data = await response.json();
     const parsedData = data.bot.trim();
     console.log('url:', data.imagedata);
+
+    const imggen = document.getElementById("imageGen")
+    imggen.classList.remove("hidden")
+    imggen.setAttribute('src', data.imagedata)
+
     typeText(messageDiv, parsedData);
     
       const bewaren = document.getElementById("bewaren")

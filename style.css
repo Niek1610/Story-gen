@@ -29,6 +29,7 @@ background-color: rgba(226, 97, 5, 0.787)
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;
+ 
 
   padding: 2%;
 }
@@ -36,11 +37,9 @@ background-color: rgba(226, 97, 5, 0.787)
 #GPT #chat_container {
   flex: 1;
   height: 100%;
-  overflow-y:scroll;
-  display: flex;
+ overflow-y: scroll;
   flex-direction: column;
   gap: 10px;
- 
   padding-bottom: 20px;
   scroll-behavior: smooth;
   border-radius: 10px;
@@ -222,13 +221,16 @@ input{
     height: 80%;
     display: grid;
     grid-template-columns: 2fr 3fr;
-    pointer-events: none;
   }
 
   #imageGen{
     position: relative;
     height: 100%;
+    width: 100%;
+    text-align: center;
     pointer-events: none;
+    border-radius: 10px;
+   margin-left: 10%;
   }
 
   #bewaren{
