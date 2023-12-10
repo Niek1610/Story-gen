@@ -104,7 +104,7 @@ const submit = async (e) => {
     console.log('url:', data.imagedata);
 
     const imggen = document.getElementById("imageGen")
-    imggen.classList.remove("hidden")
+    imggen.style.visibility = "visible"
     imggen.setAttribute('src', data.imagedata)
 
     typeText(messageDiv, parsedData);

@@ -239,11 +239,12 @@ input{
     pointer-events: none;
     border-radius: 10px;
    margin-left: 10%;
+   visibility:hidden;
   }
 
   #bewaren{
     text-align: center;
-    margin-top: 3%;
+    margin-top: 3.5%;
   }
 
   .btns{
@@ -259,10 +260,11 @@ input{
     align-items: center;
     width: 200px;
     height: 60px;
-    background-color: #7a7a7a0e;
+    background-color: rgb(226, 97, 5);
     border: .5px solid rgba(0, 98, 255, 0.287);
     border-radius: 3px;
     cursor: pointer;
+    color: white;
   }
 
   #nee{
