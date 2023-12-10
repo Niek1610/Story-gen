@@ -46,7 +46,7 @@ app.post("/", async (req, res) => {
 
     const imgresponse = await openai.createImage({
       model: "dall-e-3",
-      prompt: `maak een POSTER zonder tekst voor dit verhaal: ${antwoord}. GEBRUIK GEEN TEKST IN DE COVER! EN GEBRUIK MAXIMAAL 1 PERSOON OP DE COVER! `,
+      prompt: `maak een cover zonder tekst voor dit verhaal zorg dat je alleen het plaatje maakt: ${antwoord}. GEBRUIK GEEN TEKST IN DE COVER! EN GEBRUIK MAXIMAAL 1 PERSOON OP DE COVER! CARTOON `,
       n: 1,
       size: "1024x1024",
     })
