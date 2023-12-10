@@ -65,7 +65,7 @@ background-color: rgba(226, 97, 5, 0.787)
   font-size:15px
 }
 .hidden{
-  display: none;
+  visibility: hidden ;
 }
 
 
