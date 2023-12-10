@@ -47,8 +47,10 @@ function typeText(element, text) {
     } else {
       clearInterval(interval);
     }
-  }, 40);
+  }, 30);
 }
+
+
 
 function chatStripe(value) {
   return (`
@@ -67,6 +69,7 @@ let v2 = []
 let v3 = []
 
 const submit = async (e) => {
+  testbtn.style.display = "none"
   e.preventDefault();
   const submitbtn = document.getElementById("submit-button")
   submitbtn.innerHTML = "Verhaal wordt gemaakt"
@@ -155,6 +158,7 @@ const testbtn = document.getElementById("testingbutton")
 testbtn.addEventListener("click", () =>{
   popup.classList.remove("hidden")
   nfcmsg.classList.add("hidden")
+ 
 })
 
 
