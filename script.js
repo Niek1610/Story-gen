@@ -79,7 +79,7 @@ function skipText(element, text) {
   
     element.innerHTML += formattedText;
     chatContainer.scrollTop = chatContainer.scrollHeight;
-    skipbtn.classList.add("hidden")
+    skipbtn.style.display = "none"
   })
   
 }
@@ -154,7 +154,7 @@ const submit = async (e) => {
     chatContainer.style.pointerEvents = "all"
 
     const skipbtn = document.getElementById("skipbtn")
-    skipbtn.classList.remove("hidden")
+    skipbtn.style.display = "grid"
   
   } else {
     const err = await response.text();
