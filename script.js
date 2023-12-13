@@ -24,16 +24,23 @@ function laden() {
   }, 500); 
 }
 
+let interval;
 
 function typeText(element, text) {
   let index = 0;
   let charCount = 0
+  let titelcount = 0 
 
-  let interval = setInterval(() => {
+  interval = setInterval(() => {
     chatContainer.scrollTop = chatContainer.scrollHeight;
     if (index < text.length) {
       element.innerHTML += text.charAt(index);
       charCount ++ 
+    
+      if (text.charAt(index) === '.' && titelcount === 0) {
+        element.innerHTML += '<br> <br>';
+        titelcount = 1;
+      }
 
       if (text.substr(index, 2) === '\n\n' && charCount > 500) {
         element.innerHTML += '<br> <br>';
@@ -48,6 +55,33 @@ function typeText(element, text) {
       clearInterval(interval);
     }
   }, 30);
+}
+
+function skipText(element, text) {
+  const skipbtn = document.getElementById("skipbtn")
+
+  skipbtn.addEventListener("click", () =>{
+
+    clearInterval(interval)
+    let charCount = 0;
+    let formattedText = '';
+  
+    for (let i = 0; i < text.length; i++) {
+      formattedText += text.charAt(i);
+      charCount++;
+  
+      if (text.substr(i, 2) === '\n\n' && charCount > 500) {
+        formattedText += '<br> <br>';
+        charCount = 0;
+        i++;
+      }
+    }
+  
+    element.innerHTML += formattedText;
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    skipbtn.classList.add("hidden")
+  })
+  
 }
 
 
@@ -108,6 +142,7 @@ const submit = async (e) => {
     imggen.setAttribute('src', data.imagedata)
 
     typeText(messageDiv, parsedData);
+    skipText(messageDiv, parsedData)
     
       const bewaren = document.getElementById("bewaren")
       bewaren.classList.remove("hidden")
@@ -115,8 +150,11 @@ const submit = async (e) => {
     const submitbtn = document.getElementById("submit-button")
     submitbtn.classList.add("hidden")
 
-    const chatContainer = document.getElementById("chat_containter")
+    const chatContainer = document.getElementById("chat_container")
     chatContainer.style.pointerEvents = "all"
+
+    const skipbtn = document.getElementById("skipbtn")
+    skipbtn.classList.remove("hidden")
   
   } else {
     const err = await response.text();
@@ -188,4 +226,7 @@ function submitVariables(){
   const submitbtn = document.getElementById("submit-button")
   submitbtn.classList.remove("hidden")
   console.log(v1,v2,v3)
+  testbtn.style.display = "none"
+  const of = document.getElementById("of")
+  of.style.display = "none"
 }
