@@ -57,6 +57,8 @@ function typeText(element, text) {
   }, 30);
 }
 
+let formattedText = '';
+
 function skipText(element, text) {
   const skipbtn = document.getElementById("skipbtn")
 
@@ -64,7 +66,7 @@ function skipText(element, text) {
 
     clearInterval(interval)
     let charCount = 0;
-    let formattedText = '';
+
   
     for (let i = 0; i < text.length; i++) {
       formattedText += text.charAt(i);
@@ -102,6 +104,9 @@ let v1 = []
 let v2 = []
 let v3 = []
 
+let parsedData;
+let imgd;
+
 const submit = async (e) => {
   testbtn.style.display = "none"
   e.preventDefault();
@@ -133,9 +138,10 @@ const submit = async (e) => {
   messageDiv.innerHTML = "";
 
   if (response.ok) {
-    const data = await response.json();
-    const parsedData = data.bot.trim();
-    console.log('url:', data.imagedata);
+    let data = await response.json();
+    parsedData = data.bot.trim();
+    imgd = data.imagedata
+    
 
     const imggen = document.getElementById("imageGen")
     imggen.style.visibility = "visible"
@@ -192,6 +198,28 @@ const nee = document.getElementById("nee")
 nee.addEventListener("click", () =>{
   location.reload()
 })
+
+const email = document.getElementById("email")
+
+
+
+email.addEventListener("click", () =>{
+  let templateParams = {
+    name: imgd,
+    message: parsedData
+  };
+ 
+  emailjs.send('service_5secyiq', 'template_qtjn5is', templateParams)
+    .then(function(response) {
+      alert("verstuurd!")
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+      alert("error")
+       console.log('FAILED...', error);
+    });
+})
+
+
 
 // Tijdelijke functies
 const title = document.getElementById("titleheader")

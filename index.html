@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("1Brc5YhMU3t1qpoiA");
+   })();
+</script>
     <title>Story</title>
   </head>
   <body id="GPT">
@@ -51,7 +59,7 @@
         </div>
        
         <div id="emailform" class="hidden">
-          <input type="email" name="email" id="email" placeholder="Email">
+          <input type="email" name="email" id="email" placeholder="Email" >
           <button type="submit" id="emailsub"><i class="material-icons" >send</i></button>
           <div id="opnieuw" onclick="location.reload();"> <h2>Annuleren</h2></div>
         </div>
@@ -62,6 +70,7 @@
       </div>
       
     <script type="module" src="script.js"></script>
+    
   </body>
 </html>
 
