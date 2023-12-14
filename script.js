@@ -200,19 +200,21 @@ nee.addEventListener("click", () =>{
 })
 
 const email = document.getElementById("email")
+const emailsub = document.getElementById("emailsub")
 
+emailsub.addEventListener("click", () => {
 
-
-email.addEventListener("click", () =>{
   let templateParams = {
-    name: imgd,
-    message: parsedData
+    url: imgd,
+    message: parsedData,
+    email: email.value
   };
  
   emailjs.send('service_5secyiq', 'template_qtjn5is', templateParams)
     .then(function(response) {
       alert("verstuurd!")
        console.log('SUCCESS!', response.status, response.text);
+       location.reload()
     }, function(error) {
       alert("error")
        console.log('FAILED...', error);
