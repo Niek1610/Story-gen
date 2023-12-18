@@ -35,7 +35,7 @@ app.post("/", async (req, res) => {
 
 
     const response = await openai.createChatCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo-1106",
       messages: [{"role": "system", "content": `Schrijf een kort verhaal wat leuk is voor kinderen. Het moet ook grappig zijn. Het hoofdcharacter heeft een aantal eigenschappen: ${character[0]},${character[1]}. het character is een${character[2]}. Het thema is ${thema[0]}, ${thema[1]},${thema[2]} en het leesniveau is ${geletterdheid[0]}, dus zorg dat de tekst past bij het leesniveau. Creer alinias zodat het makkelijk te lezen is. GEEF HET VERHAAL EEN LEUKE TITEL EN EINDIG DE TITEL MET EEN PUNT.` }],
       temperature: 1,
       presence_penalty: 1,
